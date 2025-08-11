@@ -1,0 +1,7 @@
+{
+  "workMin": 1,
+  "breakMin": 1,
+  "longBreakMin": 1,
+  "autoStart": false,
+  "sessions": 2
+}
