@@ -21,6 +21,7 @@ public class PomodoroWindow extends JFrame {
     private JButton settingsButton;
     JPopupMenu settingsMenu;
     private String filepath;
+    Color backgroundColor,foregroundColor;
 
 
 
@@ -33,6 +34,9 @@ public class PomodoroWindow extends JFrame {
         setLocationRelativeTo(null); // center on screen
         filepath = "D:\\Java\\JavaGreatProjects\\Pomodoro\\Pomodoro\\src\\school_bell.mp3";
         focusSessions = 1;
+        backgroundColor = Color.decode("#c95b4b");
+        foregroundColor = Color.decode("#103623");
+
         addingMainPanel();
 
         addingTopPanel();
@@ -62,7 +66,7 @@ public class PomodoroWindow extends JFrame {
     private void addingTopPanel() {
         //top panel (for setting + pomodoro icon)
         topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(Color.decode("#8f1402"));
+        topPanel.setBackground(backgroundColor);
         topPanel.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
 
         addingSettingPanel();
@@ -70,8 +74,8 @@ public class PomodoroWindow extends JFrame {
 
         //Title label center
         JLabel titleLabel = new JLabel("Pomodoro for your focus", SwingConstants.CENTER);
-        titleLabel.setForeground(Color.decode("#66cc99"));
-        titleLabel.setFont(new Font("Serif",Font.BOLD | Font.ITALIC,40));
+        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(new Font("Serif",Font.BOLD | Font.ITALIC,45));
 
         topPanel.add(settingsButton, BorderLayout.EAST);
         topPanel.add(titleLabel,BorderLayout.CENTER);
@@ -83,7 +87,7 @@ public class PomodoroWindow extends JFrame {
         JLabel pomodoroLabel = new JLabel(new ImageIcon(scaledPomodoro));
 
         JPanel pomodoroPanel = new JPanel();
-        pomodoroPanel.setBackground(Color.decode("#8f1402"));
+        pomodoroPanel.setBackground(backgroundColor);
         pomodoroPanel.setBorder(BorderFactory.createEmptyBorder(6, 0, 30, 0)); // space below image
         pomodoroPanel.setLayout(new BorderLayout());
         pomodoroPanel.add(pomodoroLabel, BorderLayout.SOUTH);
@@ -137,7 +141,7 @@ public class PomodoroWindow extends JFrame {
         restoreBtn.addActionListener(e -> {
             workField.setText("25");
             breakField.setText("5");
-            longBreakField.setText("15");
+            longBreakField.setText("20");
             sessionsField.setText("4");
             autoStartCheck.setSelected(true);
         });
@@ -177,7 +181,7 @@ public class PomodoroWindow extends JFrame {
     private void addingCenterPanel() {
         //Center Panel
         centerPanel = new JPanel(new BorderLayout());
-        centerPanel.setBackground(Color.decode("#8f1402"));
+        centerPanel.setBackground(backgroundColor);
 
         //Row 1: Mode selection with radio buttons
         focusRadio = new JRadioButton("Focus");
@@ -194,14 +198,14 @@ public class PomodoroWindow extends JFrame {
 
 
         for (JRadioButton btn : new JRadioButton[]{focusRadio, shortBreakRadio, longBreakRadio}) {
-            btn.setBackground(Color.decode("#8f1402"));
-            btn.setForeground(Color.decode("#66cc99"));
-            btn.setFont(new Font("Serif", Font.PLAIN, 22));
+            btn.setBackground(backgroundColor);
+            btn.setForeground(Color.BLACK);
+            btn.setFont(new Font("Serif", Font.PLAIN | Font.BOLD, 25));
         }
 
         // Row 1: Radio buttons panel at the top
         JPanel radioPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
-        radioPanel.setBackground(Color.decode("#8f1402"));
+        radioPanel.setBackground(backgroundColor);
         radioPanel.add(focusRadio);
         radioPanel.add(shortBreakRadio);
         radioPanel.add(longBreakRadio);
@@ -238,7 +242,7 @@ public class PomodoroWindow extends JFrame {
 
         sessionLabel = new JLabel("#" +focusSessions,SwingConstants.CENTER);
         sessionLabel.setFont(new Font("Serif",Font.PLAIN,15));
-        sessionLabel.setForeground(Color.decode("#cc6666"));
+        sessionLabel.setForeground(foregroundColor);
         sessionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
@@ -248,14 +252,14 @@ public class PomodoroWindow extends JFrame {
 
         timerLabel = new JLabel(String.format("%02d:%02d", mins, secs));
         timerLabel.setFont(new Font("Arial",Font.BOLD,48));
-        timerLabel.setForeground(Color.decode("#66cc99"));
+        timerLabel.setForeground(Color.BLACK);
         timerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Row 2 & 3: Session + Timer in the center
         middlePanel = new JPanel();
         middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
         //middlePanel.setOpaque(false); // keep background transparent
-        middlePanel.setBackground(Color.decode("#8f1402"));
+        middlePanel.setBackground(backgroundColor);
         middlePanel.add(sessionLabel);
         middlePanel.add(Box.createVerticalStrut(5));
         middlePanel.add(timerLabel);
@@ -316,7 +320,7 @@ public class PomodoroWindow extends JFrame {
         });
 
         buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.decode("#8f1402"));
+        buttonPanel.setBackground(backgroundColor);
         buttonPanel.add(startPauseButton);
         buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -353,7 +357,7 @@ public class PomodoroWindow extends JFrame {
     private void addingMainPanel() {
         //Main Background panel
         mainPanel = new JPanel();
-        mainPanel.setBackground(Color.decode("#8f1402"));
+        mainPanel.setBackground(backgroundColor);
         mainPanel.setLayout(new BorderLayout());
         add(mainPanel);
     }
